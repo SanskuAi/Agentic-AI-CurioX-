@@ -6,12 +6,13 @@
 
 body {
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background: #0b0b14;
-    color: #ffffff;
+    background: #f5f7fb;
+    color: #222222;
 
     font-family: Arial, sans-serif;
 }
@@ -23,23 +24,30 @@ body {
 }
 
 .auth-card {
-    background: #171727;
-    border: 1px solid #292943;
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
     border-radius: 16px;
 
     padding: 35px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 .auth-card h1 {
     text-align: center;
-    color: #8b5cf6;
+    color: #222222;
+
     margin-bottom: 8px;
+    font-size: 26px;
 }
 
 .auth-card > p {
     text-align: center;
-    color: #aaa;
+    color: #6b7280;
+
     margin-bottom: 25px;
+    font-size: 14px;
 }
 
 form {
@@ -51,20 +59,28 @@ form {
 input,
 select {
     width: 100%;
+
     padding: 13px;
 
-    border: 1px solid #33334d;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
 
-    background: #0b0b14;
-    color: white;
+    background: #ffffff;
+    color: #222222;
 
     outline: none;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: #9ca3af;
 }
 
 input:focus,
 select:focus {
     border-color: #8b5cf6;
+
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
 }
 
 button {
@@ -74,29 +90,67 @@ button {
     border-radius: 8px;
 
     background: #8b5cf6;
-    color: white;
+    color: #ffffff;
 
     font-weight: bold;
+    font-size: 14px;
+
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 button:hover {
-    opacity: 0.9;
+    background: #7c3aed;
 }
 
+/* Success Message */
 #message,
 #loginMessage {
     margin-top: 15px;
-    color: #22d3ee;
+
+    text-align: center;
+
+    color: #16a34a;
+
+    font-size: 14px;
 }
 
+/* Error Message */
+.error {
+    color: #dc2626 !important;
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+
+    padding: 8px;
+
+    margin-top: 12px;
+
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Switch Login/Register */
 .switch {
     text-align: center;
+
     margin-top: 20px;
-    color: #999;
+
+    color: #6b7280;
+
+    font-size: 14px;
 }
 
 .switch a {
-    color: #22d3ee;
+    color: #8b5cf6;
+
     text-decoration: none;
+
+    font-weight: 600;
+}
+
+.switch a:hover {
+    text-decoration: underline;
 }

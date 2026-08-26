@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | InfraAI</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+         AgenticAI
+        </div>
+
+        <div class="nav-right">
+            <span id="userName"></span>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+        </div>
+
+    </nav>
+
+
+    <main class="dashboard">
+
+        <section class="welcome">
+
+            <div>
+                <h1>Hello, <span id="welcomeName">User</span></h1>
+
+                <p>
+                    Report infrastructure problems easily.
+                </p>
+            </div>
+
+            <a href="report.html" class="report-btn">
+                + Report a Problem
+            </a>
+
+        </section>
+
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <h3 id="totalReports">0</h3>
+                <p>Total Reports</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="pendingReports">0</h3>
+                <p>Pending</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="resolvedReports">0</h3>
+                <p>Resolved</p>
+            </div>
+
+        </section>
+
+
+        <section class="reports-section">
+
+            <div class="section-header">
+
+                <h2>Recent Reports</h2>
+
+                <a href="myReports.html">
+                    View All
+                </a>
+
+            </div>
+
+            <div id="reportsContainer">
+
+                <div class="empty">
+                    No reports yet.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/dashboard.js"></script>
+
+</body>
+
+</html>

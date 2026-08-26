@@ -10,8 +10,8 @@ if (registerForm) {
 
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
         const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const role = document.getElementById("role").value;
 
@@ -41,7 +41,7 @@ if (registerForm) {
 
                 setTimeout(() => {
                     window.location.href = "login.html";
-                }, 1000);
+                }, 500);
 
             }
 
@@ -50,6 +50,7 @@ if (registerForm) {
             document.getElementById("message").textContent =
                 "Server connection failed";
 
+                message.className = "error";
         }
 
     });
@@ -91,8 +92,15 @@ if (loginForm) {
 
             const data = await response.json();
 
-            document.getElementById("loginMessage").textContent =
-                data.message;
+            // document.getElementById("loginMessage").textContent =
+            //     data.message;
+
+            const loginMessage = document.getElementById("loginMessage")
+
+            if(loginForm){
+                loginMessage.textContent = data.message || "login Fail"
+                loginMessage.className = "error"
+            }
 
             if (response.ok) {
 
@@ -124,6 +132,7 @@ if (loginForm) {
 
             document.getElementById("loginMessage").textContent =
                 "Server connection failed";
+                loginMessage.className = "error";
 
         }
 

@@ -12,7 +12,7 @@ router.post("/register" , async(req , res)=>{
         const {name, email,password,role} = req.body
         if(!name || !email || !password) {
             return res.status(400).json({ 
-                message:'All field reuired'
+                message:'All field reqired'
             })
         } ;
 
@@ -21,7 +21,7 @@ router.post("/register" , async(req , res)=>{
 
         if(existinguser){
             return res.status(400).json({
-                message:'eail already exite'
+                message:'email allready exitxe'
             })
         }
 
@@ -46,7 +46,7 @@ router.post("/register" , async(req , res)=>{
         
     }  catch(error){
         res.status(500).json({
-            message:"Regist faile"
+            message:"Register fail faile"
         })
     }
 })
@@ -54,62 +54,71 @@ router.post("/register" , async(req , res)=>{
 
 
 // LOGIN
-router.post("/login", async(req,res)=>{
-    try{
-        const {email , password} = req.body
-        if(!email || !password){
+router.post("/login", async (req, res) => {
+
+    try {
+
+        const { email, password } = req.body;
+
+        if (!email || !password) {
             return res.status(400).json({
-                message: 'email and pass, req'
-            })
+                message: "Email and password are required"
+            });
         }
 
+        const user = await User.findOne({ email });
 
-        const user = await User.findOne({email})
-
-        if(!user ){
+        if (!user) {
             return res.status(401).json({
-                message:"Invalid email"
-            })
-        } 
+                message: "Invalid email"
+            });
+        }
 
         const passwordUser = await bcrypt.compare(
             password,
             user.password
-        ) ;
-        if(!passwordUser){
-            return res.status(401).json({
-                message:"Inavlide password"
-            })
-        };
+        );
 
-        // ID {TOKen*_}
+        if (!passwordUser) {
+            return res.status(401).json({
+                message: "Invalid password"
+            });
+        }
+
+        // Create JWT token
         const token = jwt.sign(
             {
-            id:user._id,
-            role:user.role
-        },
-    process.env.JWT_SECRET,
-    { 
-        expiresIn: 'id'  //TOKE CVALID ONE DAY
-    } ) ;
+                id: user._id,
+                role: user.role
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1d"
+            }
+        );
 
-    // SUCESS
-    res.json({
-        message: "login successfull" ,
-        token ,
-        user:{
-            id:user._id,
-            name:user.name,
-            email: user.email,
-            role: user.role
-        }
-    })
-    }  
-    catch(error) {
+        // Success
+        res.json({
+            message: "Login successful",
+
+            token,
+
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
+
+    } catch (error) {
+
+        console.error("LOGIN ERROR:", error);
+
         res.status(500).json({
-            message:"Logain failed"
-        })
+            message: "Login failed",
+            error: error.message
+        });
     }
-})
-
+}); 
 module.exports = router
