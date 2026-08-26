@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenti AI</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1>Agntic AI</h1>
+            <p  id="message" >Cerate your account</p>
+
+            <form action="" id="registerForm"> 
+                <input type="text" id="name" placeholder="Enter name" required>
+
+                <input type="email" id="email" placeholder="Enter email " required>
+
+                <input type="password" id="password" placeholder="Enter password" required>
+
+                <select name="role" id="role">
+                    <option value="user">user</option>
+                    <option value="department">Department</option>
+                </select>
+
+                <button type="submit">Create account</button>
+            </form>
+
+            <p  id="message" class="switch"> Already account 
+                <a href="login.html">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"> </script>
+</body>
+</html>

@@ -56,11 +56,19 @@ router.post("/register" , async(req , res)=>{
 // LOGIN
 router.post("/login", async(req,res)=>{
     try{
+        const {email , password} = req.body
+        if(!email || !password){
+            return res.status(400).json({
+                message: 'email and pass, req'
+            })
+        }
+
+
         const user = await User.findOne({email})
 
         if(!user ){
             return res.status(401).json({
-                message:"Unvalid email"
+                message:"Invalid email"
             })
         } 
 
@@ -80,7 +88,7 @@ router.post("/login", async(req,res)=>{
             id:user._id,
             role:user.role
         },
-    process.env.JWT_SECRETE ,
+    process.env.JWT_SECRET,
     { 
         expiresIn: 'id'  //TOKE CVALID ONE DAY
     } ) ;
