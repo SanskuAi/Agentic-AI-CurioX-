@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Infrastructure Dashboard | InfraAI</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/admin.css"
+    >
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            InfraAI
+        </div>
+
+        <div>
+
+            <span>
+                Infrastructure Overview
+            </span>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <div class="heading">
+
+            <h1>Infrastructure Overview</h1>
+
+            <p>
+                AI-powered complaint monitoring
+            </p>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <h2 id="total">
+                    0
+                </h2>
+
+                <p>
+                    Total Reports
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2 id="assigned">
+                    0
+                </h2>
+
+                <p>
+                    Assigned
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2 id="resolved">
+                    0
+                </h2>
+
+                <p>
+                    Resolved
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h2 id="reinspection">
+                    0
+                </h2>
+
+                <p>
+                    Reinspection
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORTS -->
+
+        <section class="reports">
+
+            <h2>
+                Recent Infrastructure Reports
+            </h2>
+
+            <div id="reportsContainer">
+
+                <p class="loading">
+                    Loading...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>
