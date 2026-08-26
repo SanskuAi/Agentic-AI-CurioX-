@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Report Problem | AgenticAI</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/report.css"
+    >
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AgenticAI
+        </div>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+    </nav>
+
+
+    <main class="report-container">
+
+        <div class="report-card">
+
+            <h1>Report a Problem</h1>
+
+            <p class="subtitle">
+                Report an infrastructure problem
+            </p>
+
+
+            <form id="reportForm">
+
+                <label>
+                    What is the problem?
+                </label>
+
+                <textarea
+                    id="problem"
+                    placeholder="Example: Streetlight is off"
+                    required
+                ></textarea>
+
+
+                <label>
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Example: MIT College Gate"
+                    required
+                >
+
+                <small>
+                    Enter the location manually.
+                </small>
+
+
+                <label>
+                    Problem Image
+                </label>
+
+                <input
+                    type="file"
+                    id="image"
+                    accept="image/*"
+                >
+
+
+                <button type="submit">
+                    Submit Report
+                </button>
+
+            </form>
+
+
+            <p id="message"></p>
+
+        </div>
+
+    </main>
+
+
+    <script src="../js/report.js"></script>
+
+</body>
+
+</html>

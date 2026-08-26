@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    background: #0b0b14;
+    color: white;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    height: 70px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #11111f;
+
+    border-bottom: 1px solid #292943;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+
+    color: #8b5cf6;
+}
+
+.navbar a {
+    color: #22d3ee;
+
+    text-decoration: none;
+}
+
+
+/* CONTAINER */
+
+.report-container {
+    width: 90%;
+    max-width: 650px;
+
+    margin: 50px auto;
+}
+
+
+/* CARD */
+
+.report-card {
+    background: #171727;
+
+    border: 1px solid #292943;
+
+    border-radius: 14px;
+
+    padding: 35px;
+}
+
+.report-card h1 {
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #999;
+
+    margin-bottom: 30px;
+}
+
+
+/* FORM */
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+label {
+    margin-top: 10px;
+
+    font-weight: bold;
+}
+
+textarea,
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+
+    padding: 13px;
+
+    background: #0b0b14;
+
+    color: white;
+
+    border: 1px solid #33334d;
+
+    border-radius: 8px;
+}
+
+textarea {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+
+    border-color: #8b5cf6;
+}
+
+small {
+    color: #777;
+
+    margin-bottom: 5px;
+}
+
+
+/* BUTTON */
+
+button {
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+
+/* MESSAGE */
+
+#message {
+    margin-top: 20px;
+
+    color: #22d3ee;
+
+    text-align: center;
+}
