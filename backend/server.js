@@ -1,44 +1,68 @@
-require("dotenv").config()  //load a dotenv file
+require("dotenv").config();
 
-const express = require('express')
-const cors = require('cors')  //CONNECT FROT-BACK=END
-const connectDB = require('./db')
-const authRoutes = require('./router/auth')
-const mongoose = require('mongoose')
-
-// const authRoutes = require("./router/auth")
-const reportRoutes = require("./router/report")
-// const mongoose = require('mongoose')
-// const path = require('path')
-
-const taskRoutes = require("./router/task")
-
+const express = require("express");
+const cors = require("cors");
 const path = require("path");
+
+const connectDB = require("./db");
+
+const authRoutes = require("./router/auth");
+const reportRoutes = require("./router/report");
+const taskRoutes = require("./router/task");
 
 const PORT = 5000;
 
-const app = express()  
+const app = express();
+
+
+// DATABASE
 
 connectDB();
 
-app.use(cors())
-app.use(express.json())
 
-app.use("/api/auth", authRoutes)
+// MIDDLEWARE
 
-// REPORT 
-app.use("/api/reports", reportRoutes)
+app.use(cors());
 
-// Task
-app.use("/api/tasks", taskRoutes)
-app.get("/", (req,res)=>{
+app.use(express.json());
+
+
+// ROUTES
+
+app.use("/api/auth", authRoutes);
+
+app.use("/api/reports", reportRoutes);
+
+app.use("/api/tasks", taskRoutes);
+
+
+// HOME
+
+app.get("/", (req, res) => {
+
     res.json({
-        message:"Agentic ai backend run"
-    }) 
-})
+        message: "Agentic ai backend run"
+    });
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")))
+});
 
-app.listen(PORT,()=>{
-    console.log(`server run port-${PORT}`);
-})
+
+// UPLOADS
+
+app.use(
+    "/uploads",
+    express.static(
+        path.join(__dirname, "uploads")
+    )
+);
+
+
+// SERVER
+
+app.listen(PORT, () => {
+
+    console.log(
+        `server run port-${PORT}`
+    );
+
+});

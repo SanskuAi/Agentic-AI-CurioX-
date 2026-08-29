@@ -1,26 +1,36 @@
+
 const API = "http://localhost:5000/api/auth";
 
-// REGISTER
+// ==================== REGISTER ====================
 
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
-
     registerForm.addEventListener("submit", async (e) => {
-
         e.preventDefault();
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
         const role = document.getElementById("role").value;
 
+        const message = document.getElementById("message");
+
+        if (!name || !email || !password) {
+            message.textContent = "All fields are required";
+            message.className = "error";
+            return;
+        }
+
         try {
+
+            // ==================== SEND REGISTER ====================
 
             const response = await fetch(`${API}/register`, {
                 method: "POST",
+
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
 
                 body: JSON.stringify({
@@ -29,35 +39,62 @@ if (registerForm) {
                     password,
                     role
                 })
-
             });
 
-            const data = await response.json();
+            // ==================== READ RESPONSE ====================
 
-            document.getElementById("message").textContent =
-                data.message;
+            const text = await response.text();
+
+            console.log("REGISTER STATUS:", response.status);
+            console.log("REGISTER RESPONSE:", text);
+
+            let data;
+
+            try {
+                data = JSON.parse(text);
+            } catch (error) {
+                console.error("REGISTER RESPONSE IS NOT JSON:", text);
+
+                message.textContent =
+                    "Invalid server response. Check backend terminal.";
+
+                message.className = "error";
+
+                return;
+            }
+
+            // ==================== RESULT ====================
+
+            message.textContent =
+                data.message || "Registration completed";
 
             if (response.ok) {
 
+                message.className = "success";
+
                 setTimeout(() => {
                     window.location.href = "login.html";
-                }, 500);
+                }, 1000);
 
+            } else {
+
+                message.className = "error";
             }
 
         } catch (error) {
 
-            document.getElementById("message").textContent =
+            console.error("REGISTER ERROR:", error);
+
+            message.textContent =
                 "Server connection failed";
 
-                message.className = "error";
+            message.className = "error";
         }
-
     });
 }
 
 
-// LOGIN
+// ==================== LOGIN ====================
 
 const loginForm = document.getElementById("loginForm");
 
@@ -68,74 +105,129 @@ if (loginForm) {
         e.preventDefault();
 
         const email =
-            document.getElementById("loginEmail").value;
+            document.getElementById("loginEmail").value.trim();
 
         const password =
             document.getElementById("loginPassword").value;
 
+        const loginMessage =
+            document.getElementById("loginMessage");
+
+        if (!email || !password) {
+
+            loginMessage.textContent =
+                "Email and password are required";
+
+            loginMessage.className = "error";
+
+            return;
+        }
+
         try {
+
+            // ==================== SEND LOGIN ====================
 
             const response = await fetch(`${API}/login`, {
 
                 method: "POST",
 
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
 
                 body: JSON.stringify({
                     email,
-                    password,
-                }),
-
+                    password
+                })
             });
 
-            const data = await response.json();
 
-            // document.getElementById("loginMessage").textContent =
-            //     data.message;
+            // ==================== READ RESPONSE ====================
 
-            const loginMessage = document.getElementById("loginMessage")
+            const text = await response.text();
 
-            if(loginForm){
-                loginMessage.textContent = data.message || "login Fail"
-                loginMessage.className = "error"
+            console.log("LOGIN STATUS:", response.status);
+            console.log("LOGIN RESPONSE:", text);
+
+            let data;
+
+            try {
+
+                data = JSON.parse(text);
+
+            } catch (error) {
+
+                console.error(
+                    "LOGIN RESPONSE IS NOT JSON:",
+                    text
+                );
+
+                loginMessage.textContent =
+                    "Invalid server response. Check backend terminal.";
+
+                loginMessage.className = "error";
+
+                return;
             }
 
-            if (response.ok) {
 
-                localStorage.setItem(
-                    "token",
-                    data.token
-                );
+            // ==================== LOGIN ERROR ====================
 
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(data.user)
-                );
+            if (!response.ok) {
 
-                if (data.user.role === "department") {
+                loginMessage.textContent =
+                    data.message || "Login failed";
 
-                    window.location.href =
-                        "department.html";
+                loginMessage.className = "error";
 
-                } else {
+                return;
+            }
 
-                    window.location.href =
-                        "dashboard.html";
 
-                }
+            // ==================== SAVE LOGIN DATA ====================
 
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+
+
+            // ==================== ROLE REDIRECT ====================
+
+            if (data.user.role === "department") {
+
+                window.location.href =
+                    "department.html";
+
+            } else if (data.user.role === "admin") {
+
+                window.location.href =
+                    "admin.html";
+
+            } else {
+
+                window.location.href =
+                    "dashboard.html";
             }
 
         } catch (error) {
 
-            document.getElementById("loginMessage").textContent =
+            console.error(
+                "LOGIN ERROR:",
+                error
+            );
+
+            loginMessage.textContent =
                 "Server connection failed";
-                loginMessage.className = "error";
 
+            loginMessage.className =
+                "error";
         }
-
     });
-
 }
+
