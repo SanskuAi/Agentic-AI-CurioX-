@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Reports | AgenticAI</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/myReports.css"
+    >
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AgenticAI
+        </div>
+
+        <div class="nav-right">
+
+            <a
+                href="dashboard.html"
+                class="back-btn"
+            >
+                Dashboard
+            </a>
+
+            <span id="userName">
+                User
+            </span>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==================== MAIN ==================== -->
+
+    <main class="container">
+
+
+        <!-- ==================== HEADER ==================== -->
+
+        <section class="page-header">
+
+            <div>
+
+                <h1>
+                    My Reports
+                </h1>
+
+                <p>
+                    Track all your infrastructure complaints
+                    and their AI-assisted resolution status.
+                </p>
+
+            </div>
+
+
+            <a
+                href="report.html"
+                class="report-btn"
+            >
+                + New Report
+            </a>
+
+        </section>
+
+
+        <!-- ==================== REPORT COUNT ==================== -->
+
+        <div class="report-count">
+
+            <span>
+                Total Reports:
+            </span>
+
+            <strong id="reportCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <!-- ==================== REPORTS ==================== -->
+
+        <section id="reportsContainer">
+
+            <div class="loading">
+                Loading your reports...
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="../js/myReports.js"></script>
+
+</body>
+
+</html>

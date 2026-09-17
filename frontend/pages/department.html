@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Department | AgenticAI</title>
+    <title>Department Tasks | AgenticAI</title>
 
     <link
         rel="stylesheet"
@@ -21,13 +21,15 @@
 
 <body>
 
+    <!-- ================= NAVBAR ================= -->
+
     <nav class="navbar">
 
         <div class="logo">
             AgenticAI
         </div>
 
-        <div>
+        <div class="nav-right">
 
             <span id="departmentName">
                 Department
@@ -42,24 +44,45 @@
     </nav>
 
 
+    <!-- ================= MAIN ================= -->
+
     <main class="container">
 
         <div class="heading">
 
-            <h1>Department Tasks</h1>
+            <div>
 
-            <p>
-                AI-assigned infrastructure problems
-            </p>
+                <span class="page-badge">
+                    AI WORK QUEUE
+                </span>
+
+                <h1>
+                    Department Tasks
+                </h1>
+
+                <p>
+                    AI-assigned infrastructure complaints
+                    and resolution recommendations.
+                </p>
+
+            </div>
 
         </div>
 
 
+        <!-- ================= TASKS ================= -->
+
         <div id="tasksContainer">
 
-            <p class="loading">
-                Loading tasks...
-            </p>
+            <div class="loading-card">
+
+                <div class="loader"></div>
+
+                <p>
+                    Loading assigned tasks...
+                </p>
+
+            </div>
 
         </div>
 

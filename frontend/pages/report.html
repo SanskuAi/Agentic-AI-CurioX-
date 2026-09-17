@@ -21,6 +21,8 @@
 
 <body>
 
+    <!-- ================= NAVBAR ================= -->
+
     <nav class="navbar">
 
         <div class="logo">
@@ -34,31 +36,38 @@
     </nav>
 
 
+    <!-- ================= MAIN ================= -->
+
     <main class="report-container">
 
         <div class="report-card">
 
-            <h1>Report a Problem</h1>
+            <h1>
+                Report a Problem
+            </h1>
 
             <p class="subtitle">
                 Report an infrastructure problem
+                and let AI analyze it automatically.
             </p>
 
 
+            <!-- ================= FORM ================= -->
+
             <form id="reportForm">
 
-                <label>
+                <label for="problem">
                     What is the problem?
                 </label>
 
                 <textarea
                     id="problem"
-                    placeholder="Example: Streetlight is off"
+                    placeholder="Example: Streetlight is off near the college gate"
                     required
                 ></textarea>
 
 
-                <label>
+                <label for="location">
                     Location
                 </label>
 
@@ -74,7 +83,7 @@
                 </small>
 
 
-                <label>
+                <label for="image">
                     Problem Image
                 </label>
 
@@ -92,7 +101,9 @@
             </form>
 
 
-            <p id="message"></p>
+            <!-- AI RESULT / ERROR -->
+
+            <div id="message"></div>
 
         </div>
 

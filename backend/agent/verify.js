@@ -244,6 +244,7 @@
 // };
 
 require("dotenv").config();
+console.log("GEMINI MODEL:", process.env.GEMINI_MODEL);
 
 const fs = require("fs");
 const path = require("path");
@@ -345,6 +346,8 @@ Give a short reason for your decision.
 
                     // Use the same model that is working
                     model: "gemini-3.6-flash",
+
+                    // model: process.env.GEMINI_MODEL,
 
                     contents: [
                         {

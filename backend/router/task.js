@@ -422,12 +422,12 @@ const {
 
 const router = express.Router();
 
+
 // ==================== MULTER ====================
 
 const storage = multer.diskStorage({
 
     destination: (req, file, cb) => {
-
         cb(null, "uploads/");
     },
 
@@ -438,11 +438,13 @@ const storage = multer.diskStorage({
 
         cb(null, name);
     }
+
 });
 
 const upload = multer({
     storage: storage
 });
+
 
 // ==================== GET ALL TASKS ====================
 
@@ -467,12 +469,13 @@ router.get("/", async (req, res) => {
         );
 
         res.status(500).json({
-
-            message:
-                "Failed to load tasks"
+            message: "Failed to load tasks"
         });
+
     }
+
 });
+
 
 // ==================== GET SINGLE TASK ====================
 
@@ -489,10 +492,9 @@ router.get("/:id", async (req, res) => {
         if (!task) {
 
             return res.status(404).json({
-
-                message:
-                    "Task not found"
+                message: "Task not found"
             });
+
         }
 
         res.json(task);
@@ -505,18 +507,20 @@ router.get("/:id", async (req, res) => {
         );
 
         res.status(500).json({
-
-            message:
-                "Failed to load task"
+            message: "Failed to load task"
         });
+
     }
+
 });
+
 
 // ==================== COMPLETE TASK ====================
 
 router.put(
     "/:id/complete",
     upload.single("afterImage"),
+
     async (req, res) => {
 
         try {
@@ -526,7 +530,10 @@ router.put(
                 req.params.id
             );
 
-            // ==================== FIND TASK ====================
+
+            // ====================
+            // FIND TASK
+            // ====================
 
             const task =
                 await Task.findById(
@@ -534,47 +541,58 @@ router.put(
                 )
                 .populate("report");
 
+
             if (!task) {
 
                 return res.status(404).json({
-
-                    message:
-                        "Task not found"
+                    message: "Task not found"
                 });
+
             }
 
-            // ==================== CHECK REPORT ====================
+
+            // ====================
+            // CHECK REPORT
+            // ====================
 
             if (!task.report) {
 
                 return res.status(400).json({
-
-                    message:
-                        "Report not found"
+                    message: "Report not found"
                 });
+
             }
 
-            // ==================== CHECK AFTER IMAGE ====================
+
+            // ====================
+            // CHECK AFTER IMAGE
+            // ====================
 
             if (!req.file) {
 
                 return res.status(400).json({
-
-                    message:
-                        "After image is required"
+                    message: "After image is required"
                 });
+
             }
 
-            // ==================== BEFORE IMAGE ====================
+
+            // ====================
+            // CHECK BEFORE IMAGE
+            // ====================
 
             if (!task.report.image) {
 
                 return res.status(400).json({
-
-                    message:
-                        "Before image not found"
+                    message: "Before image not found"
                 });
+
             }
+
+
+            // ====================
+            // IMAGE PATHS
+            // ====================
 
             const beforeImage =
                 path.join(
@@ -587,6 +605,7 @@ router.put(
             const afterImage =
                 req.file.path;
 
+
             console.log(
                 "Before image:",
                 beforeImage
@@ -597,31 +616,34 @@ router.put(
                 afterImage
             );
 
-            // ==================== AI VERIFICATION ====================
+
+            // ====================
+            // AI VERIFICATION
+            // ====================
 
             console.log(
                 "Sending before/after images to AI..."
             );
 
+
             const aiResult =
                 await verifyResolution(
-
                     beforeImage,
-
                     afterImage,
-
                     task.report.problem
                 );
+
 
             console.log(
                 "Verification Result:"
             );
 
-            console.log(
-                aiResult
-            );
+            console.log(aiResult);
 
-            // ==================== SAVE TASK ====================
+
+            // ====================
+            // SAVE TASK
+            // ====================
 
             task.status =
                 aiResult.result;
@@ -635,20 +657,54 @@ router.put(
             task.verificationResult =
                 aiResult.reason;
 
+
             await task.save();
 
-            // ==================== SAVE REPORT ====================
 
-            task.report.status =
+            // ====================
+            // SAVE REPORT
+            // ====================
+
+            // Store AI verification result
+            // separately from normal report status
+
+            task.report.verificationStatus =
                 aiResult.result;
 
+            task.report.verificationReason =
+                aiResult.reason;
+
+
+            // Convert AI result into
+            // normal report lifecycle status
+
+            if (
+                aiResult.result ===
+                "Likely Resolved"
+            ) {
+
+                task.report.status =
+                    "Resolved";
+
+            } else {
+
+                task.report.status =
+                    "Needs Reinspection";
+
+            }
+
+
             await task.report.save();
+
 
             console.log(
                 "Task updated successfully"
             );
 
-            // ==================== RESPONSE ====================
+
+            // ====================
+            // RESPONSE
+            // ====================
 
             res.json({
 
@@ -657,9 +713,10 @@ router.put(
 
                 task: task,
 
-                verification:
-                    aiResult
+                verification: aiResult
+
             });
+
 
         } catch (error) {
 
@@ -675,9 +732,13 @@ router.put(
 
                 error:
                     error.message
+
             });
+
         }
+
     }
 );
+
 
 module.exports = router;
