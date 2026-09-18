@@ -1,146 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Complete Task | AgenticAI</title>
-
-    <link
-        rel="stylesheet"
-        href="../css/department.css"
-    >
-
-</head>
-
-<body> -->
-
-    <!-- NAVBAR -->
-
-    <!-- <nav class="navbar">
-
-        <div class="logo">
-           AgenticAI
-        </div>
-
-        <a
-            href="department.html"
-            class="view-btn"
-        >
-            Back
-        </a>
-
-    </nav> -->
-
-
-    <!-- MAIN CONTENT -->
-
-    <!-- <main class="container">
-
-        <div class="heading">
-
-            <h1>
-                Complete Task
-            </h1>
-
-            <p>
-                Upload evidence after completing the task
-            </p>
-
-        </div> -->
-
-
-        <!-- TASK INFORMATION -->
-
-        <!-- <div id="taskContainer">
-
-            <p class="loading">
-                Loading task...
-            </p>
-
-        </div> -->
-
-
-        <!-- COMPLETION FORM -->
-
-        <!-- <form
-            id="completeForm"
-            class="task-card"
-            enctype="multipart/form-data"
-        >
-
-            <h2>
-                Completion Details
-            </h2>
-
-
-            <br>
-
-
-            <label for="completionMessage">
-                Completion Message
-            </label>
-
-
-            <br><br>
-
-
-            <textarea
-                id="completionMessage"
-                name="completionMessage"
-                rows="5"
-                placeholder="Example: Streetlight repaired successfully"
-                required
-            ></textarea>
-
-
-            <br><br>
-
-
-            <label for="afterImage">
-                Upload AFTER Image
-            </label>
-
-
-            <br><br>
-
-
-            <input
-                type="file"
-                id="afterImage"
-                name="afterImage"
-                accept="image/*"
-                required
-            >
-
-
-            <br><br>
-
-
-            <button type="submit" class="report-btn">
-                Complete Task
-            </button>
-
-
-            <p id="message"></p>
-
-        </form>
-
-    </main>
-
-
-    <script src="../js/task.js"></script>
-
-</body>
-
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,75 +9,182 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Complete Task | InfraAI</title>
+    <title>Complete Task | AgenticAI</title>
 
     <link
         rel="stylesheet"
-        href="../css/department.css"
+        href="../css/task.css"
     >
 </head>
 
 <body>
 
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
     <nav class="navbar">
 
         <div class="logo">
-            InfraAI
+            AgenticAI
         </div>
 
         <a
             href="department.html"
-            class="view-btn"
+            class="back-btn"
         >
-            Back
+            ← Back
         </a>
 
     </nav>
 
 
+    <!-- =========================
+         MAIN
+    ========================== -->
+
     <main class="container">
 
-        <div class="task-card">
+        <!-- PAGE HEADER -->
 
-            <h1>Complete Task</h1>
+        <section class="page-header">
+
+            <span class="page-badge">
+                DEPARTMENT TASK
+            </span>
+
+            <h1>
+                Complete Resolution Task
+            </h1>
 
             <p>
-                Add completion details and upload
-                the after image.
+                Provide completion details and upload
+                an after image for AI verification.
             </p>
 
-
-            <form id="completeForm">
-
-                <label>Completion Message</label>
-
-                <textarea
-                    id="completionMessage"
-                    placeholder="Example: Streetlight repaired and working."
-                    required
-                ></textarea>
+        </section>
 
 
-                <label>After Image</label>
+        <!-- =========================
+             TASK INFORMATION
+        ========================== -->
 
-                <input
-                    type="file"
-                    id="afterImage"
-                    accept="image/*"
-                    required
+        <section
+            id="taskContainer"
+            class="task-card"
+        >
+
+            <div class="loading">
+                Loading task...
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMPLETION FORM
+        ========================== -->
+
+        <section class="completion-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="section-label">
+                        RESOLUTION
+                    </span>
+
+                    <h2>
+                        Completion Details
+                    </h2>
+
+                </div>
+
+                <div class="ai-badge">
+                    🤖 AI Verification
+                </div>
+
+            </div>
+
+
+            <form
+                id="completeForm"
+                enctype="multipart/form-data"
+            >
+
+                <!-- MESSAGE -->
+
+                <div class="form-group">
+
+                    <label for="completionMessage">
+                        Completion Message
+                    </label>
+
+                    <p class="field-help">
+                        Describe what was done to resolve the complaint.
+                    </p>
+
+                    <textarea
+                        id="completionMessage"
+                        name="completionMessage"
+                        rows="5"
+                        placeholder="Example: Streetlight repaired successfully and tested."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- AFTER IMAGE -->
+
+                <div class="form-group">
+
+                    <label for="afterImage">
+                        Upload After Image
+                    </label>
+
+                    <p class="field-help">
+                        Upload a clear image showing the completed work.
+                    </p>
+
+                    <div class="file-box">
+
+                        <input
+                            type="file"
+                            id="afterImage"
+                            name="afterImage"
+                            accept="image/*"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
                 >
-
-
-                <button type="submit">
-                    Submit Completion
+                    Submit for AI Verification
                 </button>
 
             </form>
 
 
-            <p id="message"></p>
+            <!-- =========================
+                 AI RESULT
+            ========================== -->
 
-        </div>
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+        </section>
 
     </main>
 

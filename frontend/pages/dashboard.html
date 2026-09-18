@@ -3,76 +3,220 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Dashboard | AgenticAI</title>
 
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link
+        rel="stylesheet"
+        href="../css/dashboard.css"
+    >
 </head>
 
 <body>
 
+    <!-- ==================== NAVBAR ==================== -->
+
     <nav class="navbar">
 
         <div class="logo">
-         AgenticAI
+            AgenticAI
         </div>
 
         <div class="nav-right">
-            <span id="userName"></span>
+
+            <span id="userName">
+                User
+            </span>
 
             <button id="logoutBtn">
                 Logout
             </button>
+
         </div>
 
     </nav>
 
 
+    <!-- ==================== DASHBOARD ==================== -->
+
     <main class="dashboard">
+
+
+        <!-- ==================== WELCOME ==================== -->
 
         <section class="welcome">
 
             <div>
-                <h1>Hello, <span id="welcomeName">User</span></h1>
+
+                <h1>
+                    Hello,
+                    <span id="welcomeName">
+                        User
+                    </span>
+                </h1>
 
                 <p>
-                    Report infrastructure problems easily.
+                    Track and manage your infrastructure complaints.
                 </p>
+
             </div>
 
-            <a href="report.html" class="report-btn">
+
+            <a
+                href="report.html"
+                class="report-btn"
+            >
                 + Report a Problem
             </a>
 
         </section>
 
 
+        <!-- ==================== STATS ==================== -->
+
         <section class="stats">
 
-            <div class="stat-card">
-                <h3 id="totalReports">0</h3>
-                <p>Total Reports</p>
-            </div>
+
+            <!-- TOTAL -->
 
             <div class="stat-card">
-                <h3 id="pendingReports">0</h3>
-                <p>Pending</p>
+
+                <div class="stat-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <h3 id="totalReports">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Reports
+                    </p>
+
+                </div>
+
             </div>
 
+
+            <!-- HIGH PRIORITY -->
+
             <div class="stat-card">
-                <h3 id="resolvedReports">0</h3>
-                <p>Resolved</p>
+
+                <div class="stat-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <h3 id="highPriorityReports">
+                        0
+                    </h3>
+
+                    <p>
+                        High Priority
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- IN PROGRESS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔄
+                </div>
+
+                <div>
+
+                    <h3 id="pendingReports">
+                        0
+                    </h3>
+
+                    <p>
+                        In Progress
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESOLVED -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <h3 id="resolvedReports">
+                        0
+                    </h3>
+
+                    <p>
+                        Likely Resolved
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- REINSPECTION -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔍
+                </div>
+
+                <div>
+
+                    <h3 id="reinspectionReports">
+                        0
+                    </h3>
+
+                    <p>
+                        Needs Reinspection
+                    </p>
+
+                </div>
+
             </div>
 
         </section>
 
 
+        <!-- ==================== RECENT REPORTS ==================== -->
+
         <section class="reports-section">
+
 
             <div class="section-header">
 
-                <h2>Recent Reports</h2>
+                <div>
+
+                    <h2>
+                        Recent Reports
+                    </h2>
+
+                    <p>
+                        Your latest infrastructure complaints
+                    </p>
+
+                </div>
+
 
                 <a href="myReports.html">
                     View All
@@ -80,15 +224,17 @@
 
             </div>
 
-            <div id="reportsContainer">
+
+            <div id="recentReports">
 
                 <div class="empty">
-                    No reports yet.
+                    Loading reports...
                 </div>
 
             </div>
 
         </section>
+
 
     </main>
 
