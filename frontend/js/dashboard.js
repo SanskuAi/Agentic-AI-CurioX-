@@ -1,4 +1,8 @@
-const API = "http://localhost:5000/api/reports";
+// const API = "http://localhost:5000/api/reports";
+
+const API_URL = "https://YOUR-BACKEND.vercel.app";
+
+fetch(`${API_URL}/api/reports`);
 
 const token = localStorage.getItem("token");
 const userData = localStorage.getItem("user");
@@ -577,8 +581,8 @@ async function loadReports() {
         if (container) {
 
             container.innerHTML = `
-                <div class="empty error">
-
+                <div
+                
                     <h3>
                         Unable to load reports
                     </h3>
