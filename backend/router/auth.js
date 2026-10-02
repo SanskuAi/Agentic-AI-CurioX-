@@ -358,7 +358,7 @@ try {
 
             password: hashedPassword,
 
-            role: role || "user"
+            role: role || "User"
 
         });
 
