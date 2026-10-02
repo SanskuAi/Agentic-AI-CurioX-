@@ -524,7 +524,7 @@ const express = require("express");
 const multer = require("multer");
 const mongoose = require("mongoose");
 
-const Report = require("../models/Report");
+const Report = require("../models/reportt");
 const Task = require("../models/task");
 const { analyzeReport } = require("../agent/agent");
 
