@@ -1,24 +1,23 @@
-
 const API = "http://localhost:5000/api/auth";
 
 // ==================== REGISTER ====================
 
 const registerForm = document.getElementById("registerForm");
 
-if (registerForm) {
-    registerForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
+if (registerForm) { 
+    registerForm.addEventListener("submit", async (e) => { 
+        e.preventDefault(); 
+ 
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
-        const role = document.getElementById("role").value;
+        const role = document.getElementById("role").value;  
 
         const message = document.getElementById("message");
 
         if (!name || !email || !password) {
             message.textContent = "All fields are required";
-            message.className = "error";
+            message.className = "error";  
             return;
         }
 
@@ -140,13 +139,13 @@ if (loginForm) {
                     password
                 })
             });
-
+             
 
             // ==================== READ RESPONSE ====================
 
             const text = await response.text();
 
-            console.log("LOGIN STATUS:", response.status);
+            console.log("LOGIb N STATUS:", response.status);
             console.log("LOGIN RESPONSE:", text);
 
             let data;
@@ -230,4 +229,6 @@ if (loginForm) {
         }
     });
 }
+
+
 
