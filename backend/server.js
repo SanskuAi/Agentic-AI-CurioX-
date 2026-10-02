@@ -14,6 +14,11 @@ const PORT = 5000;
 
 const app = express();
 
+// app.use(cors({
+//     origin: "https://agentic-ai-curiox-frontend.vercel.app"
+// }));
+
+// app.use(express.json());
 
 // DATABASE
 
@@ -22,7 +27,10 @@ connectDB();
 
 // MIDDLEWARE
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+    origin: "https://agentic-ai-curiox-frontend.vercel.app"
+}));
 
 app.use(express.json());
 
